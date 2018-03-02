@@ -29,7 +29,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'tracim.app.entry.js',
+    filename: 'tracim.[name].entry.js',
     pathinfo: !isProduction
   },
   devServer: {
@@ -80,20 +80,16 @@ module.exports = {
   },
   plugins:[
     ...[ // generic plugins always present
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'tracim.vendor.bundle.js'
-      })
-      // new dashboardPlugin()
+      new webpack.optimize.SplitChunksPlugin({chunks: 'vendor', name: 'tracim.vendor.bundle.js'})
     ],
     ...(isProduction
       ? [ // production specific plugins
         new webpack.DefinePlugin({
           'process.env': { 'NODE_ENV': JSON.stringify('production') }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-          compress: { warnings: false }
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //   compress: { warnings: false }
+        // })
       ]
       : [] // development specific plugins
     )
