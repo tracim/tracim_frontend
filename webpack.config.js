@@ -4,6 +4,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const dashboardPlugin = require('webpack-dashboard/plugin')
 
 module.exports = {
+  // entry: ['babel-polyfill', 'whatwg-fetch', './src/index.js'],
   entry: {
     app: ['babel-polyfill', 'whatwg-fetch', './src/index.js'],
     vendor: [
@@ -78,9 +79,18 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  optimization: {
+    runtimeChunk: false,
+    splitChunks: {
+      chunks: "initial",
+      // cacheGroups: {
+      //   default: false,
+      //   vendors: false,
+      // },
+    },
+  },
   plugins:[
     ...[ // generic plugins always present
-      new webpack.optimize.SplitChunksPlugin({chunks: 'vendor', name: 'tracim.vendor.bundle.js'})
     ],
     ...(isProduction
       ? [ // production specific plugins
