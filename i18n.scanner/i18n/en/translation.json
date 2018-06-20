@@ -1,0 +1,28 @@
+{
+  "Login": {
+    "logout_error": "",
+    "fail": ""
+  },
+  "Sidebar": {
+    "create_new_workspace": ""
+  },
+  "FlashMessage": {
+    "error": ""
+  },
+  "Footer": {
+    "marketing_msg": "",
+    "copyright": "",
+    "emptyTrad": ""
+  },
+  "FileItemHeader": {
+    "type": "",
+    "document_name": "",
+    "status": ""
+  },
+  "Folder": {
+    "create": ""
+  },
+  "Header": {
+    "Search": ""
+  }
+}
